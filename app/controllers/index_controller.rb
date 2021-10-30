@@ -43,6 +43,10 @@ class IndexController < ApplicationController
   end
 
   def redis
-    Redis.new
+    @redis ||= if Rails.env.development?
+      Redis.new
+    else
+      Redis.new(url: ENV['REDIS_URL'])
+    end
   end
 end
