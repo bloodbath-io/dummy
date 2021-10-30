@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/', to: 'index#show'
+  get '/metrics', to: 'index#metrics'
+  get '/reset', to: 'index#reset'
+  get '/:slug', to: 'index#show'
 end
