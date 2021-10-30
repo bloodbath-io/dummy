@@ -1,5 +1,10 @@
 class IndexController < ApplicationController
   def show
+    unless slug.present?
+      render json: {}
+      return
+    end
+
     key = "slug:#{slug}"
     expires_in = 24.hours
     received = Time.now
@@ -25,7 +30,7 @@ class IndexController < ApplicationController
   end
 
   def slug
-    @slug ||= params[:slug].parameterize
+    @slug ||= params[:slug]&.parameterize
   end
 
   def slugs
