@@ -72,6 +72,9 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    ddtrace (0.53.0)
+      ffi (~> 1.0)
+      msgpack
     diff-lcs (1.4.4)
     erubi (1.10.0)
     factory_bot (6.2.0)
@@ -94,9 +97,13 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.8)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.12.5-x86_64-linux)
@@ -176,6 +183,7 @@ GEM
     zeitwerk (2.5.1)
 
 PLATFORMS
+  ruby
   x86_64-darwin-19
   x86_64-darwin-21
   x86_64-linux
@@ -183,6 +191,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   database_cleaner
+  ddtrace
   factory_bot
   faker
   listen (~> 3.3)
