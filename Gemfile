@@ -8,7 +8,6 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'redis'
 gem 'rake'
-gem 'ddtrace', require: 'ddtrace/auto_instrument'
 
 group :development, :test do
   gem 'pry'
