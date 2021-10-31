@@ -1,4 +1,4 @@
-require 'digest'
+require 'securerandom'
 
 class IndexController < ApplicationController
   def show
@@ -13,11 +13,11 @@ class IndexController < ApplicationController
     expires_in = 24.hours
     index = 0
     now = Time.now
-    received = "#{now} [#{index}]"
+    received = "#{now} [#{index}] (#{SecureRandom.hex(20)})"
 
     until redis.sismember(key, received) == false
       index += 1
-      received = "#{now} [#{index}]"
+      received = "#{now} [#{index}] (#{SecureRandom.hex(20)})"
     end
 
     redis.sadd(key, received)
