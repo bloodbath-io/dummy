@@ -24,7 +24,7 @@ class IndexController < ApplicationController
     redis.expire(key, expires_in.to_i) if redis.smembers(key).size <= 1
 
     render json: {
-      hits: redis.smembers(key)
+      hits: redis.smembers(key).size
     }
   end
 
