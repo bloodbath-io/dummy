@@ -12,11 +12,12 @@ class IndexController < ApplicationController
     key = "slug:#{slug}"
     expires_in = 24.hours
     index = 0
-    received = "#{Time.now} [#{index}]"
+    now = Time.now
+    received = "#{now} [#{index}]"
 
     until redis.sismember(key, received) == false
       index += 1
-      received = "#{Time.now} [#{index}]"
+      received = "#{now} [#{index}]"
     end
 
     redis.sadd(key, received)
