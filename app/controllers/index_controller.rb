@@ -12,7 +12,7 @@ class IndexController < ApplicationController
     key = "slug:#{slug}"
     expires_in = 24.hours
     index = 0
-    now = Time.now
+    now = Time.now.strftime("%Y-%m-%dT%H:%M:%S.%L")
     received = "#{now} [#{index}] (#{SecureRandom.hex(20)})"
 
     until redis.sismember(key, received) == false
