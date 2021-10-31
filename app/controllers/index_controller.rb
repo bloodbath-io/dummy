@@ -1,3 +1,5 @@
+require 'digest'
+
 class IndexController < ApplicationController
   def show
     unless slug.present?
@@ -9,15 +11,16 @@ class IndexController < ApplicationController
 
     key = "slug:#{slug}"
     expires_in = 24.hours
-    received = Time.now
     index = 0
+    received = "#{Time.now} [#{index}]"
 
-    if redis.get("#{key} [#{index}]")
-      index += 1 until redis.get("#{key} [#{index}]").nil?
+    until redis.sismember(key, received) == false
+      index += 1
+      received = "#{Time.now} [#{index}]"
     end
 
-    redis.sadd("#{key} [#{index}]", received)
-    redis.expire("#{key} [#{index}]", expires_in.to_i) if redis.smembers("#{key} [#{index}]").size <= 1
+    redis.sadd(key, received)
+    redis.expire(key, expires_in.to_i) if redis.smembers(key).size <= 1
 
     render json: {
       hits: redis.smembers(key)
