@@ -1,7 +1,9 @@
 class IndexController < ApplicationController
   def show
     unless slug.present?
-      render json: {}
+      render json: {
+        message: "Welcome to the dummy of Bloodbath. For more information about the project please visit https://docs.bloodbath.io"
+      }
       return
     end
 
