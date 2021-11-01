@@ -8,6 +8,7 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'redis'
 gem 'rake'
+gem 'lograge'
 
 group :development, :test do
   gem 'pry'
